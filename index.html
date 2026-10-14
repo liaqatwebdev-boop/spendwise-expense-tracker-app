@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="SpendWise personal finance and expense tracker dashboard.">
+
+  <title>SpendWise — Expense Tracker</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <a href="#" class="brand">
+        <span class="brand-icon">S</span>
+        <span>Spend<span class="brand-light">Wise</span></span>
+      </a>
+
+      <p class="nav-label">WORKSPACE</p>
+
+      <nav class="navigation">
+        <a href="#" class="nav-link active">
+          <span class="nav-icon">▦</span> Dashboard
+        </a>
+
+        <a href="#transactions" class="nav-link">
+          <span class="nav-icon">↔</span> Transactions
+        </a>
+
+        <a href="#budgets" class="nav-link">
+          <span class="nav-icon">◷</span> Budgets
+        </a>
+
+        <a href="#analytics" class="nav-link">
+          <span class="nav-icon">▥</span> Analytics
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="upgrade-card">
+          <span class="upgrade-symbol">✦</span>
+          <h3>Smart money habits</h3>
+          <p>Small steps today, a better future tomorrow.</p>
+        </div>
+
+        <div class="profile">
+          <div class="avatar">LA</div>
+
+          <div class="profile-info">
+            <strong>Liaqat Alikhan</strong>
+            <span>Personal account</span>
+          </div>
+
+          
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- Topbar -->
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YOUR FINANCES AT A GLANCE</p>
+          <h1>Dashboard</h1>
+        </div>
+
+        <div class="topbar-actions">
+          <span class="date-chip">
+            ◷ <span id="today-date">October 2026</span>
+          </span>
+
+          <button
+            type="button"
+            class="primary-btn"
+            id="add-transaction"
+          >
+            <span>＋</span> Add transaction
+          </button>
+        </div>
+      </header>
+
+      <!-- Add / Edit Transaction Form -->
+      <section
+        class="panel transaction-form-panel"
+        id="transaction-form-panel"
+        hidden
+      >
+        <div class="panel-heading">
+          <div>
+            <h3>Add transaction</h3>
+            <p>Record your income or an expense.</p>
+          </div>
+
+          <button
+            type="button"
+            class="more-btn"
+            id="close-transaction-form"
+            aria-label="Close form"
+          >
+            ✕
+          </button>
+        </div>
+
+        <form id="transaction-form">
+          <div class="form-grid">
+
+            <label for="transaction-type">
+              Transaction type
+              <select id="transaction-type" required>
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+              </select>
+            </label>
+
+            <label for="transaction-description">
+              Description
+              <input
+                id="transaction-description"
+                type="text"
+                maxlength="80"
+                placeholder="e.g. Grocery shopping"
+                required
+              >
+            </label>
+
+            <label for="transaction-amount">
+              Amount (PKR)
+              <input
+                id="transaction-amount"
+                type="number"
+                min="0.01"
+                step="0.01"
+                placeholder="e.g. 2500"
+                required
+              >
+            </label>
+
+            <label for="transaction-category">
+              Category
+              <select id="transaction-category" required>
+                <option value="Food & dining">Food & dining</option>
+                <option value="Transport">Transport</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Bills">Bills</option>
+                <option value="Health">Health</option>
+                <option value="Freelance">Freelance</option>
+                <option value="Salary">Salary</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+
+            <label for="transaction-date">
+              Date
+              <input
+                id="transaction-date"
+                type="date"
+                required
+              >
+            </label>
+
+          </div>
+
+          <div class="form-actions">
+            <button
+              type="button"
+              class="select-btn"
+              id="cancel-transaction"
+            >
+              Cancel
+            </button>
+
+            <button type="submit" class="primary-btn">
+              Save transaction
+            </button>
+          </div>
+
+          <p
+            id="form-message"
+            class="form-message"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </form>
+      </section>
+
+      <!-- Welcome Section -->
+      <section class="welcome-row">
+        <div>
+          <h2>Good morning, Liaqat <span>✦</span></h2>
+          <p>Here's what's happening with your money.</p>
+        </div>
+
+        <div class="period-select">
+          <span class="period-dot"></span>
+          This month
+          <span>⌄</span>
+        </div>
+      </section>
+
+      <!-- Summary Cards -->
+      <section class="summary-grid">
+
+        <article class="summary-card balance-card">
+          <div class="card-top">
+            <span>Total balance</span>
+            <span class="card-icon">◈</span>
+          </div>
+
+          <h2>Rs. 0</h2>
+
+          <p class="card-note">
+            <span class="trend up">↗</span>
+            <span>Your available balance</span>
+          </p>
+
+          <div class="balance-decoration"></div>
+        </article>
+
+        <article class="summary-card">
+          <div class="card-top">
+            <span>Total income</span>
+            <span class="card-icon income-icon">↙</span>
+          </div>
+
+          <h2>Rs. 0</h2>
+
+          <p class="card-note">
+            <span>All recorded income</span>
+          </p>
+        </article>
+
+        <article class="summary-card">
+          <div class="card-top">
+            <span>Total expenses</span>
+            <span class="card-icon expense-icon">↗</span>
+          </div>
+
+          <h2>Rs. 0</h2>
+
+          <p class="card-note">
+            <span>All recorded expenses</span>
+          </p>
+        </article>
+
+        <article class="summary-card">
+          <div class="card-top">
+            <span>Savings rate</span>
+            <span class="card-icon savings-icon">◎</span>
+          </div>
+
+          <h2>0.0%</h2>
+
+          <p class="card-note">
+            <span>Your income savings rate</span>
+          </p>
+        </article>
+
+      </section>
+
+      <!-- Analytics and Budget -->
+      <section class="content-grid">
+
+        <!-- Analytics -->
+        <article class="panel analytics-panel" id="analytics">
+          <div class="panel-heading">
+            <div>
+              <h3>Cash flow</h3>
+              <p>Your income and expenses over time</p>
+            </div>
+
+            <button type="button" class="select-btn">
+              Last 7 months⌄
+            </button>
+          </div>
+
+          <div class="chart-legend">
+            <span><i class="legend-income"></i> Income</span>
+            <span><i class="legend-expense"></i> Expenses</span>
+          </div>
+
+          <div class="chart">
+            <div class="chart-grid">
+              <span>120k</span>
+              <span>90k</span>
+              <span>60k</span>
+              <span>30k</span>
+              <span>0</span>
+            </div>
+
+            <div class="chart-bars">
+
+              <div class="bar-group">
+                <div class="bar-pair">
+                  <i class="bar income" style="--h:65%"></i>
+                  <i class="bar expense" style="--h:30%"></i>
+                </div>
+                <span>Apr</span>
+              </div>
+
+              <div class="bar-group">
+                <div class="bar-pair">
+                  <i class="bar income" style="--h:78%"></i>
+                  <i class="bar expense" style="--h:42%"></i>
+                </div>
+                <span>May</span>
+              </div>
+
+              <div class="bar-group">
+                <div class="bar-pair">
+                  <i class="bar income" style="--h:56%"></i>
+                  <i class="bar expense" style="--h:35%"></i>
+                </div>
+                <span>Jun</span>
+              </div>
+
+              <div class="bar-group">
+                <div class="bar-pair">
+                  <i class="bar income" style="--h:88%"></i>
+                  <i class="bar expense" style="--h:48%"></i>
+                </div>
+                <span>Jul</span>
+              </div>
+
+              <div class="bar-group">
+                <div class="bar-pair">
+                  <i class="bar income" style="--h:72%"></i>
+                  <i class="bar expense" style="--h:40%"></i>
+                </div>
+                <span>Aug</span>
+              </div>
+
+              <div class="bar-group">
+                <div class="bar-pair">
+                  <i class="bar income" style="--h:94%"></i>
+                  <i class="bar expense" style="--h:35%"></i>
+                </div>
+                <span>Sep</span>
+              </div>
+
+              <div class="bar-group current-month">
+                <div class="bar-pair">
+                  <i class="bar income" style="--h:82%"></i>
+                  <i class="bar expense" style="--h:29%"></i>
+                </div>
+                <span>Oct</span>
+              </div>
+
+            </div>
+          </div>
+        </article>
+
+        <!-- Budget -->
+<article class="panel budget-panel" id="budgets">
+  <div class="panel-heading">
+    <div>
+      <h3>Monthly budget</h3>
+      <p>Track your spending limits</p>
+    </div>
+
+    <button
+      type="button"
+      class="more-btn"
+      aria-label="More budget options"
+    >
+      •••
+    </button>
+  </div>
+
+  <div class="budget-total">
+    <div>
+      <span class="muted">Total budget</span>
+      <h2>Rs. 50,000</h2>
+    </div>
+
+    <div class="budget-ring">
+      <div class="ring-inner">
+        <strong>0.0%</strong>
+        <span>used</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Food & dining -->
+  <div class="budget-progress"
+       data-budget-category="Food & dining"
+       data-monthly-limit="20000">
+    <div class="progress-label">
+      <span>Food & dining</span>
+      <strong>Rs. 0</strong>
+    </div>
+    <div class="progress-track">
+      <i class="food-progress"></i>
+    </div>
+    <div class="progress-foot">
+      <span>0.0% used</span>
+      <span>Rs. 20,000 budget</span>
+    </div>
+  </div>
+
+  <!-- Transport -->
+  <div class="budget-progress"
+       data-budget-category="Transport"
+       data-monthly-limit="10000">
+    <div class="progress-label">
+      <span>Transport</span>
+      <strong>Rs. 0</strong>
+    </div>
+    <div class="progress-track">
+      <i class="transport-progress"></i>
+    </div>
+    <div class="progress-foot">
+      <span>0.0% used</span>
+      <span>Rs. 10,000 budget</span>
+    </div>
+  </div>
+
+  <!-- Shopping -->
+  <div class="budget-progress"
+       data-budget-category="Shopping"
+       data-monthly-limit="10000">
+    <div class="progress-label">
+      <span>Shopping</span>
+      <strong>Rs. 0</strong>
+    </div>
+    <div class="progress-track">
+      <i class="shopping-progress"></i>
+    </div>
+    <div class="progress-foot">
+      <span>0.0% used</span>
+      <span>Rs. 10,000 budget</span>
+    </div>
+  </div>
+
+  <!-- Bills -->
+  <div class="budget-progress"
+       data-budget-category="Bills"
+       data-monthly-limit="5000">
+    <div class="progress-label">
+      <span>Bills</span>
+      <strong>Rs. 0</strong>
+    </div>
+    <div class="progress-track">
+      <i style="width: 0%"></i>
+    </div>
+    <div class="progress-foot">
+      <span>0.0% used</span>
+      <span>Rs. 5,000 budget</span>
+    </div>
+  </div>
+
+  <!-- Health -->
+  <div class="budget-progress"
+       data-budget-category="Health"
+       data-monthly-limit="2500">
+    <div class="progress-label">
+      <span>Health</span>
+      <strong>Rs. 0</strong>
+    </div>
+    <div class="progress-track">
+      <i style="width: 0%"></i>
+    </div>
+    <div class="progress-foot">
+      <span>0.0% used</span>
+      <span>Rs. 2,500 budget</span>
+    </div>
+  </div>
+
+  <!-- Other -->
+  <div class="budget-progress"
+       data-budget-category="Other"
+       data-monthly-limit="2500">
+    <div class="progress-label">
+      <span>Other</span>
+      <strong>Rs. 0</strong>
+    </div>
+    <div class="progress-track">
+      <i style="width: 0%"></i>
+    </div>
+    <div class="progress-foot">
+      <span>0.0% used</span>
+      <span>Rs. 2,500 budget</span>
+    </div>
+  </div>
+
+</article>
+
+      </section>
+      <!-- End Analytics and Budget -->
+
+      <!-- Transactions -->
+      <section class="panel transactions-panel" id="transactions">
+
+        <div class="panel-heading transaction-heading">
+          <div>
+            <h3>Transactions</h3>
+            <p>Manage your income and expenses</p>
+          </div>
+        </div>
+
+        <!-- Search and Filters -->
+        <div class="transaction-tools">
+
+          <input
+            type="search"
+            id="transaction-search"
+            placeholder="Search transactions..."
+            aria-label="Search transactions"
+          >
+
+          <select
+            id="transaction-filter"
+            aria-label="Filter by type"
+          >
+            <option value="all">All transactions</option>
+            <option value="income">Income only</option>
+            <option value="expense">Expenses only</option>
+          </select>
+
+          <select
+            id="category-filter"
+            aria-label="Filter by category"
+          >
+            <option value="all">All categories</option>
+            <option value="Food & dining">Food & dining</option>
+            <option value="Transport">Transport</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Bills">Bills</option>
+            <option value="Health">Health</option>
+            <option value="Freelance">Freelance</option>
+            <option value="Salary">Salary</option>
+            <option value="Other">Other</option>
+          </select>
+
+        </div>
+
+        <!-- Transactions Table -->
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>TRANSACTION</th>
+                <th>CATEGORY</th>
+                <th>DATE</th>
+                <th>AMOUNT</th>
+                <th>STATUS</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td colspan="5">
+                  No transactions yet. Add your first transaction.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <span>© 2026 SpendWise. Built with care.</span>
+        <span>Personal finance, made simple.</span>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- JavaScript Entry Point -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

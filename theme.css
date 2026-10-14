@@ -1,0 +1,139 @@
+/* SpendWise: light and dark theme, plus shared fixes.
+   Loaded by theme.js after style.css, so these rules win. */
+
+:root {
+  color-scheme: light;
+
+  /* Variables the older CSS and JS referenced but never defined */
+  --card-background: var(--surface);
+  --border-color: var(--border);
+  --muted-color: var(--muted);
+
+  --ring-track: #e9f1ed;
+  --field-bg: #ffffff;
+  --field-border: #dfe4ec;
+}
+
+/* Search, filter and date fields follow the theme instead of staying dark */
+:root .transaction-tools input,
+:root .transaction-tools select,
+:root .date-range input {
+  border: 1px solid var(--field-border);
+  background: var(--field-bg);
+  color: var(--text);
+}
+
+:root .transaction-tools input::placeholder {
+  color: var(--muted);
+}
+
+:root .transaction-tools select option {
+  background: var(--field-bg);
+  color: var(--text);
+}
+
+.transaction-actions {
+  margin-top: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: -60px;
+  left: 12px;
+  z-index: 100001;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--green);
+  color: #fff;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ---------- Dark theme ---------- */
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0c1420;
+  --surface: #131e2d;
+  --text: #e7edf5;
+  --muted: #8c9bb0;
+  --border: #243246;
+  --ring-track: #243246;
+  --field-bg: #0f1a28;
+  --field-border: #2b3b50;
+}
+
+[data-theme="dark"] thead {
+  background: var(--field-bg);
+}
+
+[data-theme="dark"] td {
+  border-bottom-color: var(--border);
+  color: #9fb0c4;
+}
+
+[data-theme="dark"] .transaction-name strong,
+[data-theme="dark"] .expense-amount {
+  color: var(--text);
+}
+
+[data-theme="dark"] .date-chip,
+[data-theme="dark"] .period-select,
+[data-theme="dark"] .select-btn,
+[data-theme="dark"] .form-grid label,
+[data-theme="dark"] .date-range label {
+  color: #b6c3d4;
+}
+
+[data-theme="dark"] .form-grid input,
+[data-theme="dark"] .form-grid select {
+  background: var(--field-bg);
+}
+
+[data-theme="dark"] .ring-inner {
+  background: var(--surface);
+}
+
+[data-theme="dark"] .progress-track {
+  background: var(--ring-track);
+}
+
+[data-theme="dark"] .chart-grid-line {
+  stroke: var(--border);
+}
+
+[data-theme="dark"] .donut-track {
+  stroke: var(--ring-track);
+}
+
+[data-theme="dark"] .card-icon {
+  background: #1c2540;
+}
+
+[data-theme="dark"] .income-icon,
+[data-theme="dark"] .salary {
+  background: #12342b;
+}
+
+[data-theme="dark"] .expense-icon {
+  background: #3a1f24;
+}
+
+[data-theme="dark"] .savings-icon,
+[data-theme="dark"] .groceries {
+  background: #3a2d17;
+}
+
+[data-theme="dark"] .budget-alert.is-warning {
+  background: #3a2d17;
+  color: #f3b565;
+}
+
+[data-theme="dark"] .budget-alert.is-over {
+  background: #3a1f24;
+  color: #f08a8e;
+}

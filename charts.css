@@ -1,0 +1,378 @@
+/* SpendWise: monthly report, cash flow chart and category donut */
+
+/* Month picker and chart range replace the old static labels */
+.period-select select {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+select.select-btn {
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+}
+
+/* Monthly report */
+.report-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.report-stat {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.report-stat strong {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(15px, 1.6vw, 20px);
+  overflow-wrap: anywhere;
+}
+
+.report-stat small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.report-stat.is-positive strong {
+  color: var(--green);
+}
+
+.report-stat.is-negative strong {
+  color: var(--red);
+}
+
+/* Cash flow chart (SVG) */
+.chart svg {
+  width: 100%;
+  height: 100%;
+}
+
+.chart-grid-line {
+  stroke: #edf0f5;
+}
+
+.chart-axis-label {
+  fill: #99a3b2;
+  font-size: 10px;
+}
+
+.chart-bar-income {
+  fill: #24b782;
+}
+
+.chart-bar-expense {
+  fill: #b2a6f1;
+}
+
+.chart-bar-income.is-selected {
+  fill: #117c57;
+}
+
+.chart-bar-expense.is-selected {
+  fill: #8a7be0;
+}
+
+/* Category donut */
+/* Chart and legend sit side by side when there is room. When the panel is
+   narrow the legend drops below the chart instead of being squeezed. */
+.donut-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px 24px;
+}
+
+#donut {
+  flex: 0 0 160px;
+  max-width: 100%;
+}
+
+.donut-wrap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.donut-track {
+  stroke: #eef1f5;
+}
+
+.donut-caption {
+  fill: var(--muted);
+  font-size: 9px;
+}
+
+.donut-total {
+  fill: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.donut-legend {
+  display: grid;
+  flex: 1 1 170px;
+  gap: 12px;
+  min-width: 170px;
+  list-style: none;
+}
+
+.donut-legend li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 8px;
+  row-gap: 1px;
+  font-size: 12px;
+}
+
+.donut-legend li.muted {
+  display: block;
+}
+
+.donut-dot {
+  grid-row: 1 / span 2;
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+}
+
+.legend-name {
+  grid-column: 2;
+}
+
+.legend-amount {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.legend-percent {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  color: var(--muted);
+  text-align: right;
+}
+
+@media (max-width: 420px) {
+  .report-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Budget settings dialog (opened from the ••• button) */
+.more-btn:hover {
+  color: var(--text);
+}
+
+.budget-modal {
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.budget-modal > p {
+  margin-bottom: 20px;
+}
+
+.budget-field {
+  display: grid;
+  gap: 7px;
+  color: #aab8ca;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.budget-field input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #34445a;
+  border-radius: 8px;
+  background: #182436;
+  color: #f1f5f9;
+  font: inherit;
+}
+
+.budget-field input:focus {
+  outline: 2px solid #818cf8;
+  outline-offset: 1px;
+}
+
+.budget-field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.budget-error {
+  min-height: 18px;
+  margin-bottom: 12px;
+  color: #fca5a5;
+  font-size: 12px;
+}
+
+.budget-save-btn {
+  border: 1px solid var(--green);
+  background: var(--green);
+  color: #fff;
+}
+
+.budget-save-btn:hover {
+  background: #138d62;
+}
+
+.budget-reset-btn {
+  display: block;
+  margin: 14px auto 0;
+  border: 0;
+  background: transparent;
+  color: #91a1b7;
+  font: inherit;
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .budget-field-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Date range, export and backup tools (under the transaction filters) */
+.data-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin: -8px 0 20px;
+}
+
+.date-range,
+.data-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.date-range label {
+  display: grid;
+  gap: 6px;
+  color: #586579;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.date-range input {
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 1px solid var(--field-border, #dfe4ec);
+  border-radius: 8px;
+  background: var(--field-bg, #ffffff);
+  color: var(--text);
+  font: inherit;
+}
+
+.data-tools .select-btn {
+  min-height: 40px;
+  font-size: 12px;
+}
+
+.data-tools .select-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+/* Budget alerts inside the budget panel */
+.budget-alerts {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 17px;
+  list-style: none;
+}
+
+.budget-alerts[hidden] {
+  display: none;
+}
+
+.budget-alert {
+  padding: 10px 12px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.budget-alert.is-warning {
+  background: #fff4e5;
+  color: #a8620f;
+}
+
+.budget-alert.is-over {
+  background: #fff0ee;
+  color: #c2373d;
+}
+
+/* Pop-up messages */
+.toast-stack {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 100000;
+  display: grid;
+  gap: 10px;
+  max-width: min(360px, calc(100vw - 40px));
+}
+
+.toast {
+  padding: 12px 16px;
+  border-left: 4px solid var(--muted);
+  border-radius: 10px;
+  background: #172236;
+  color: #fff;
+  font-size: 13px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  animation: toast-in 0.2s ease;
+}
+
+.toast.is-success {
+  border-left-color: var(--green);
+}
+
+.toast.is-warning {
+  border-left-color: var(--orange);
+}
+
+.toast.is-error {
+  border-left-color: var(--red);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+}

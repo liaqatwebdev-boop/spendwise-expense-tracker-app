@@ -1,0 +1,253 @@
+
+@media (min-width: 1500px) {
+  .main-content {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  .summary-grid {
+    gap: 22px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .sidebar {
+    width: 205px;
+  }
+
+  .main-content {
+    padding: 28px 22px 18px;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-card h2 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    display: block;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    padding: 15px 16px;
+  }
+
+  .brand {
+    margin-bottom: 17px;
+    font-size: 19px;
+  }
+
+  .brand-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-label,
+  .sidebar-bottom {
+    display: none;
+  }
+
+  .navigation {
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    padding-bottom: 3px;
+  }
+
+  .nav-link {
+    flex: 0 0 auto;
+    min-height: 39px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  .nav-icon {
+    font-size: 16px;
+    width: auto;
+  }
+
+  .main-content {
+    padding: 23px 15px 17px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+
+  .topbar h1 {
+    font-size: 25px;
+  }
+
+  .topbar-actions {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .date-chip {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .primary-btn {
+    padding: 11px 12px;
+    font-size: 12px;
+  }
+
+  .welcome-row {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 19px;
+  }
+
+  .welcome-row h2 {
+    font-size: 18px;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 11px;
+    margin-bottom: 15px;
+  }
+
+  .summary-card {
+    padding: 15px 12px;
+    border-radius: 13px;
+  }
+
+  .card-top {
+    font-size: 10px;
+    align-items: flex-start;
+  }
+
+  .card-icon {
+    width: 29px;
+    height: 29px;
+    font-size: 16px;
+  }
+
+  .summary-card h2 {
+    font-size: clamp(15px, 4.4vw, 20px);
+    margin: 15px 0 10px;
+    letter-spacing: -0.8px;
+  }
+
+  .card-note {
+    font-size: 9px;
+    gap: 4px;
+  }
+
+  .content-grid {
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  .panel {
+    padding: 17px 13px;
+    border-radius: 13px;
+  }
+
+  .panel-heading h3 {
+    font-size: 15px;
+  }
+
+  .panel-heading p {
+    font-size: 10px;
+  }
+
+  .select-btn {
+    padding: 8px;
+    font-size: 10px;
+  }
+
+  .chart {
+    height: 185px;
+  }
+
+  .chart-legend {
+    gap: 13px;
+  }
+
+  .bar-pair {
+    gap: 3px;
+  }
+
+  .bar {
+    width: clamp(7px, 2vw, 12px);
+  }
+
+  .budget-total h2 {
+    font-size: 20px;
+  }
+
+  .budget-ring {
+    width: 76px;
+    height: 76px;
+  }
+
+  .ring-inner {
+    width: 59px;
+    height: 59px;
+  }
+
+  .transaction-heading {
+    align-items: flex-start;
+  }
+
+  th,
+  td {
+    padding: 12px 10px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 5px;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 360px) {
+  .main-content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .summary-card {
+    padding: 12px 9px;
+  }
+
+  .summary-card h2 {
+    font-size: 15px;
+  }
+
+  .topbar-actions {
+    flex-wrap: wrap;
+  }
+
+  .date-chip {
+    min-width: 100%;
+  }
+
+  .primary-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .period-select {
+    padding: 8px 10px;
+  }
+}
